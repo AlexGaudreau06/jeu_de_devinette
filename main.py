@@ -3,29 +3,46 @@
 
 import random
 
-def partie():
-    x = random.randint(0, 2)
-    nb_essai = 0
+# def rejouer():
+#     rejoueron = str(input("Voulez-vous faire une autre partie (o/n)?_"))
+#     if rejoueron == "o":
+#         partie()
+#     else:
+#      print("Merci et aurevoir.")
 
+def joueur_essai():
+
+    essai = int(input("Entez votre essai :_"))
+    return essai
+
+def partie():
+    nb_essais = 0
+    x = random.randint(0, 100)
+    print(x)
     print("J'ai coisi un nombre entre 0 et 100. A vous de le deviner...")
 
-    def joueur_essai():
+    choix_joueur = joueur_essai()
 
-        global nb_essai
-        essai = int(input("Entez votre essai :_"))
-        nb_essai += 1
-        print(nb_essai)
+    nb_essais += 1
 
-        if essai < x:
-            print("Mauvaise réponse, le nombre est plus grand que", essai)
-            joueur_essai()
+    if choix_joueur < x:
+        print("Mauvaise réponse, le nombre est plus grand que", choix_joueur)
+        joueur_essai()
 
-        if essai > x:
-            print("Mauvaise réponse, le nombre est plus grand que", essai)
-            joueur_essai()
+    if choix_joueur > x:
+        print("Mauvaise réponse, le nombre est plus petit que", choix_joueur)
+        joueur_essai()
 
-        if essai == x:
-            print("Bravo! Bonne reponse. Vous avez reussi en", nb_essai, "essais!")
-    joueur_essai()
+    if choix_joueur == x:
+        print("Bravo! Bonne reponse. Vous avez reussi en", nb_essais, "essais!")
 
-rejouer = str(input("Voulez-vous faire une autre partie (o/n)?_"))
+        rejouer = str(input("Voulez-vous faire une autre partie (o/n)?_"))
+        if rejouer == "o":
+            partie()
+        else:
+            print("Merci et aurevoir.")
+
+
+joueur_essai()
+
+

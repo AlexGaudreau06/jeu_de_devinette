@@ -4,51 +4,37 @@
 import random
 
 
-x = random.randint(0, 100)
-nb_essais = 0
-print(x)
-print("J'ai coisi un nombre entre 0 et 100. A vous de le deviner...")
-
-def rejouer():
-     nb_essais = 0
-     rejoueron = str(input("Voulez-vous faire une autre partie (o/n)?_"))
-     if rejoueron == "o":
-         partie()
-     else:
-        print("Merci et aurevoir.")
-
-     return nb_essais
+def nb_hasard():
+    return random.randint(borne_minimal, borne_maximal)
 
 
+def nouvelle_essai():
+        global essai
+        essai = int(input("Entez votre essai :_"))
+        global nb_essais
+        nb_essais += 1
+        return essai
 
-def partie():
+
+while True:
+
+    borne_minimal = int(input("Choisisser la borne minimal:_"))
+    borne_maximal = int(input("Choisisser la borne maximal:_"))
+
+    nb_hasard()
+    nombre_choisi = nb_hasard()
+    nb_essais = 0
+    print(nombre_choisi)
+    print("J'ai coisi un nombre entre ", borne_minimal, " et ", borne_maximal, ". A vous de le deviner...")
     essai = int(input("Entez votre essai :_"))
-    return essai
-    raison()
+    nb_essais += 1
 
-
-def raison():
-    global essai
-
-    choix_joueur = essai
-
-    if choix_joueur < x:
-        print("Mauvaise réponse, le nombre est plus grand que", choix_joueur)
-        partie()
-
-    if choix_joueur > x:
-        print("Mauvaise réponse, le nombre est plus petit que", choix_joueur)
-        partie()
-
-    if choix_joueur == x:
+    if essai < nombre_choisi:
+        print("Mauvaise réponse, le nombre est plus grand que", essai)
+        nouvelle_essai()
+    elif essai > nombre_choisi:
+        print("Mauvaise réponse, le nombre est plus petit que", essai)
+        nouvelle_essai()
+    else:
         print("Bravo! Bonne reponse. Vous avez reussi en", nb_essais, "essais!")
-        #rejouer = str(input("Voulez-vous faire une autre partie (o/n)?_"))
-        #if rejouer == "o":
-            #partie()
-       # else:
-            #print("Merci et aurevoir.")
-
-
-partie()
-
-
+        break

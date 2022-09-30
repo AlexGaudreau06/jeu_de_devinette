@@ -1,4 +1,5 @@
-"""L’ordinateur choisi au hasard (librairie random à importer) un nombre aléatoire entre 0 et 1000.
+"""
+L’ordinateur choisi au hasard (librairie random à importer) un nombre aléatoire entre 0 et 1000.
 L’ordinateur demande à l’usager d’entrer un nombre de 0 à 1000 de façon à trouver celui qu’il a choisi.
 Alex Gaudreau
 Groupe: 406
@@ -7,12 +8,20 @@ Groupe: 406
 import random
 
 
-def parti():  # Cette fonction commence la partie
+def parti():
+    """
+    Cette fonction commence la partie
+    :return:
+    """
     print("J'ai coisi un nombre entre ", borne_minimal, " et ", borne_maximal, ". A vous de le deviner...")
     nouvelle_essai()
 
 
-def nouvelle_essai():  # le joueur entre son essai et la fonction regarde si il a raison
+def nouvelle_essai():
+    """
+     le joueur entre son essai et la fonction regarde si il a raison
+    :return:
+    """
     global nb_essais
     global nombre_choisi
     nb_essais += 1
@@ -33,7 +42,7 @@ while True:
     borne_maximal = int(input("Choisisser la borne maximal:_"))
     nombre_choisi = random.randint(borne_minimal, borne_maximal)
     parti()
-    rejouer = str(input("Voulez-vous faire une autre partie (o/n)?"))
+    rejouer = input("Voulez-vous faire une autre partie (o/n)?")
     if rejouer == "o":
         continue
     else:

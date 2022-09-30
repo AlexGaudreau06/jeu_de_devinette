@@ -1,34 +1,22 @@
-#L’ordinateur choisi au hasard (librairie random à importer) un nombre aléatoire entre 0 et 1000.
-#L’ordinateur demande à l’usager d’entrer un nombre de 0 à 1000 de façon à trouver celui qu’il a choisi.
+"""L’ordinateur choisi au hasard (librairie random à importer) un nombre aléatoire entre 0 et 1000.
+L’ordinateur demande à l’usager d’entrer un nombre de 0 à 1000 de façon à trouver celui qu’il a choisi.
+Alex Gaudreau
+Groupe: 406
+"""
 
 import random
 
 
-def nb_hasard():
-    return random.randint(borne_minimal, borne_maximal)
-
-
-def nouvelle_essai():
-        global essai
-        essai = int(input("Entez votre essai :_"))
-        global nb_essais
-        nb_essais += 1
-        return essai
-
-
-while True:
-
-    borne_minimal = int(input("Choisisser la borne minimal:_"))
-    borne_maximal = int(input("Choisisser la borne maximal:_"))
-
-    nb_hasard()
-    nombre_choisi = nb_hasard()
-    nb_essais = 0
-    print(nombre_choisi)
+def parti():  # Cette fonction commence la partie
     print("J'ai coisi un nombre entre ", borne_minimal, " et ", borne_maximal, ". A vous de le deviner...")
-    essai = int(input("Entez votre essai :_"))
-    nb_essais += 1
+    nouvelle_essai()
 
+
+def nouvelle_essai():  # le joueur entre son essai et la fonction regarde si il a raison
+    global nb_essais
+    global nombre_choisi
+    nb_essais += 1
+    essai = int(input("Entez votre essai :_"))
     if essai < nombre_choisi:
         print("Mauvaise réponse, le nombre est plus grand que", essai)
         nouvelle_essai()
@@ -37,4 +25,17 @@ while True:
         nouvelle_essai()
     else:
         print("Bravo! Bonne reponse. Vous avez reussi en", nb_essais, "essais!")
+
+
+while True:
+    nb_essais = 0
+    borne_minimal = int(input("Choisisser la borne minimal:_"))
+    borne_maximal = int(input("Choisisser la borne maximal:_"))
+    nombre_choisi = random.randint(borne_minimal, borne_maximal)
+    parti()
+    rejouer = str(input("Voulez-vous faire une autre partie (o/n)?"))
+    if rejouer == "o":
+        continue
+    else:
+        print("Merci et au revoir…")
         break

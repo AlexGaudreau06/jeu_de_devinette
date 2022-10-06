@@ -13,18 +13,18 @@ def partie():
      le joueur entre son essai et la fonction regarde si il a raison
     :return:
     """
-    global nb_essais
-    global nombre_choisi
-    nb_essais += 1
-    essai = int(input("Entez votre essai :_"))
-    if essai < nombre_choisi:
-        print("Mauvaise réponse, le nombre est plus grand que", essai)
-        partie()
-    elif essai > nombre_choisi:
-        print("Mauvaise réponse, le nombre est plus petit que", essai)
-        partie()
-    else:
-        print("Bravo! Bonne reponse. Vous avez reussi en", nb_essais, "essais!")
+    while True:
+        global nb_essais
+        global nombre_choisi
+        nb_essais += 1
+        essai = int(input("Entez votre essai :_"))
+        if essai < nombre_choisi:
+            print("Mauvaise réponse, le nombre est plus grand que", essai)
+        elif essai > nombre_choisi:
+            print("Mauvaise réponse, le nombre est plus petit que", essai)
+        else:
+            print("Bravo! Bonne reponse. Vous avez reussi en", nb_essais, "essais!")
+            return
 
 
 while True:

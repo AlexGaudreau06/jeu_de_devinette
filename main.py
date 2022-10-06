@@ -8,16 +8,7 @@ Groupe: 406
 import random
 
 
-def parti():
-    """
-    Cette fonction commence la partie
-    :return:
-    """
-    print("J'ai coisi un nombre entre ", borne_minimal, " et ", borne_maximal, ". A vous de le deviner...")
-    nouvelle_essai()
-
-
-def nouvelle_essai():
+def partie():
     """
      le joueur entre son essai et la fonction regarde si il a raison
     :return:
@@ -28,10 +19,10 @@ def nouvelle_essai():
     essai = int(input("Entez votre essai :_"))
     if essai < nombre_choisi:
         print("Mauvaise réponse, le nombre est plus grand que", essai)
-        nouvelle_essai()
+        partie()
     elif essai > nombre_choisi:
         print("Mauvaise réponse, le nombre est plus petit que", essai)
-        nouvelle_essai()
+        partie()
     else:
         print("Bravo! Bonne reponse. Vous avez reussi en", nb_essais, "essais!")
 
@@ -41,7 +32,8 @@ while True:
     borne_minimal = int(input("Choisisser la borne minimal:_"))
     borne_maximal = int(input("Choisisser la borne maximal:_"))
     nombre_choisi = random.randint(borne_minimal, borne_maximal)
-    parti()
+    print("J'ai coisi un nombre entre ", borne_minimal, " et ", borne_maximal, ". A vous de le deviner...")
+    partie()
     rejouer = input("Voulez-vous faire une autre partie (o/n)?")
     if rejouer == "o":
         continue
